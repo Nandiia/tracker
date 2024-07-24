@@ -3,15 +3,19 @@ import { Plus } from "@/app/svg/Plus";
 import { Button } from "./ui/button";
 
 import { Avatar, AvatarFallback, AvatarImage } from "@radix-ui/react-avatar";
+import Link from "next/link";
 
 export const Nav = () => {
   return (
-    <main className="w-[1440px] px-[120px] py-4 flex justify-between">
+    <main className="w-[1440px] px-[120px] py-4 flex justify-between m-auto">
       <div className="flex gap-6">
         <Logo />
-        <div className="text-base flex gap-6 ">
+        <div className="text-base flex gap-6 items-center ">
           <button>Dashboard</button>
-          <button>Records</button>
+
+          <Link href="/record">
+            <button>Records</button>
+          </Link>
         </div>
       </div>
 
