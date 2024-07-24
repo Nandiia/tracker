@@ -6,7 +6,7 @@ export default function Home() {
   return (
     <main className="max-w-[1440px] h-fit m-auto">
       <Nav />
-      <Recods />
+      {/* <Recods /> */}
     </main>
   );
 }
