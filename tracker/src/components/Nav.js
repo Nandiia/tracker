@@ -21,7 +21,7 @@ export const Nav = () => {
 
       <div className="flex gap-6 ">
         <Button className="flex gap-[2px] rounded-[20px] h-8 bg-[#0166FF] text-base font-normal">
-          <Plus /> Record
+          <Plus color="white" /> Record
         </Button>
 
         <Avatar>

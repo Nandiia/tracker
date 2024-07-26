@@ -1,3 +1,5 @@
+"use client";
+
 import { IoIosArrowBack } from "react-icons/io";
 import { IoIosArrowForward } from "react-icons/io";
 import {
@@ -9,6 +11,35 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+
+import { Checkbox } from "@/components/ui/checkbox";
+import { CheckboxCom } from "./CheckboxCom";
+
+import { FoodDrink } from "@/app/svg/FoodDrink";
+import { Lending } from "@/app/svg/Lending";
+
+const data = [
+  {
+    icon1: <Lending />,
+    name1: "Lending & Renting",
+    time: "14:00",
+    expenses: "- 1000₮",
+  },
+  {
+    icon1: <FoodDrink />,
+    name1: "Food & Drinks",
+    date: "14:00",
+    expenses: "- 1000₮",
+  },
+  {
+    icon1: <FoodDrink />,
+    name1: "Food & Drinks",
+    date: "14:00",
+    expenses: "- 1000₮",
+  },
+];
+
+// const data = [<Lending />, "Lending & Renting", "14:00", "- 1000₮"];
 
 export const RecordBoard = () => {
   return (
@@ -42,6 +73,44 @@ export const RecordBoard = () => {
           </Select>
         </div>
       </div>
+
+      <>
+        <div className=" flex bg-white py-3 px-6 rounded-xl mt-4">
+          <div className="flex items-center space-x-2 flex-1 ">
+            <Checkbox id="terms" />
+            <label
+              htmlFor="terms"
+              className="text-base font-normal leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+            >
+              Sellect All
+            </label>
+          </div>
+
+          <div className=" flex gap-2 flex-1 justify-end font-semibold text-[#94A3B8]">
+            <div>-</div>
+            <div>35500₮</div>
+          </div>
+        </div>
+      </>
+
+      <>
+        <div className="mt-3">
+          <h1>Today</h1>
+          <div>
+            {data.map((item, index) => {
+              return (
+                <CheckboxCom
+                  key={index}
+                  icon={item.icon1}
+                  expenses={item.expenses}
+                  time={item.time}
+                  name={item.name1}
+                />
+              );
+            })}
+          </div>
+        </div>
+      </>
     </main>
   );
 };

@@ -7,6 +7,8 @@ import { cn } from "@/lib/utils";
 import { Slider } from "./ui/slider";
 
 import { CategoryCom } from "./CategoryCom";
+import { Link } from "lucide-react";
+import { AddRecord } from "./AddRecord";
 
 const recordData = [
   "Food & Drinks",
@@ -27,9 +29,13 @@ export const RecordsMain = () => {
     <main className="bg-[#F9FAFB] border border-[#E5E7EB] rounded-xl px-4 py-6">
       <div className="flex flex-col gap-6">
         <h1 className="text-2xl font-semibold">Records</h1>
-        <Button className="flex gap-[2px] rounded-[20px] h-8 w-full bg-[#0166FF] text-base font-normal">
-          <Plus /> Record
-        </Button>
+        {/* <Link href="/record/addRecordEx">
+          <Button className="flex gap-[2px] rounded-[20px] h-8 w-full bg-[#0166FF] text-base font-normal">
+            <Plus color="white" /> Record
+          </Button>
+        </Link> */}
+
+        <AddRecord />
       </div>
 
       <Input
@@ -67,6 +73,11 @@ export const RecordsMain = () => {
           {recordData.map((item, index) => {
             return <CategoryCom key={index} item={item} />;
           })}
+
+          <button className="flex gap-2 bg-[#f8fafc] text-[#1F2937] items-center mt-6">
+            <Plus color="#0166FF" />
+            <div>Add Category</div>
+          </button>
         </div>
 
         <div className="mt-6">
