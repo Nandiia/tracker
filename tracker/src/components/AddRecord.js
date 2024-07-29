@@ -31,7 +31,6 @@ import { Home } from "@/app/svg/Home";
 export const AddRecord = () => {
   //ene doorh back-d baih data
   const iconData = {
-    Lending: Lending,
     Gift: Gift,
     Home: Home,
   };
@@ -42,10 +41,7 @@ export const AddRecord = () => {
       img: "Home",
       name: "Home",
     },
-    {
-      img: "Lending",
-      name: "Lending",
-    },
+
     {
       img: "Gift",
       name: "Gift",
@@ -127,16 +123,14 @@ export const AddRecord = () => {
                         {categoryData.map((item, index) => {
                           const IconComponent = iconData[item.img];
                           return (
-                            <SelectItem key={index} className="flex ">
-                              <IconComponent />
-                              <p>{item.name}</p>
+                            <SelectItem key={index} value={item.name}>
+                              <div className="flex gap-[15px] items-center">
+                                <IconComponent className="w-6 f-6" />
+                                <p>{item.name}</p>
+                              </div>
                             </SelectItem>
                           );
                         })}
-
-                        <SelectItem value="light">Light</SelectItem>
-                        <SelectItem value="dark">Dark</SelectItem>
-                        <SelectItem value="system">System</SelectItem>
                       </SelectContent>
                     </Select>
                   </div>
@@ -184,7 +178,10 @@ export const AddRecord = () => {
                   <div className="text-[#1F2937]">Payee</div>
                   <Select>
                     <SelectTrigger className="border border-[#D1D5DB] bg-[#F9FAFB] text-[#94A3B8]">
-                      <SelectValue placeholder="Write here" />
+                      <SelectValue
+                        placeholder="Write here"
+                        className="bg-[#F3F4F6] p-0"
+                      />
                     </SelectTrigger>
                     <SelectContent>
                       <SelectItem value="light">Light</SelectItem>

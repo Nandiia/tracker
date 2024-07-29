@@ -7,10 +7,78 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog";
 
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+
 import { Plus } from "@/app/svg/Plus";
 import { Gift } from "@/app/svg/Gift";
+import { Button } from "./ui/button";
+
+import { AiFillHome } from "react-icons/ai";
+import { MdAccountBox } from "react-icons/md";
+import { PiStairs } from "react-icons/pi";
+import { AiFillPicture } from "react-icons/ai";
 
 export const AddCategory = () => {
+  const iconImgData = {
+    AiFillHome: AiFillHome,
+    MdAccountBox: MdAccountBox,
+    PiStairs: PiStairs,
+    AiFillPicture: AiFillPicture,
+    AiFillPicture: AiFillPicture,
+    AiFillPicture: AiFillPicture,
+    AiFillPicture: AiFillPicture,
+    AiFillPicture: AiFillPicture,
+    AiFillPicture: AiFillPicture,
+    AiFillPicture: AiFillPicture,
+  };
+
+  const iconData = [
+    {
+      img: "AiFillHome",
+    },
+
+    {
+      img: "MdAccountBox",
+    },
+
+    {
+      img: "PiStairs",
+    },
+
+    {
+      img: "AiFillPicture",
+    },
+
+    {
+      img: "AiFillPicture",
+    },
+
+    {
+      img: "AiFillPicture",
+    },
+
+    {
+      img: "AiFillPicture",
+    },
+
+    {
+      img: "AiFillPicture",
+    },
+
+    {
+      img: "AiFillPicture",
+    },
+
+    {
+      img: "AiFillPicture",
+    },
+  ];
   return (
     <main>
       <Dialog>
@@ -23,12 +91,52 @@ export const AddCategory = () => {
             <div className="ml-3 ">Add Category</div>
           </button>
         </DialogTrigger>
+
         <DialogContent>
-          <DialogHeader>
-            <DialogTitle>Are you absolutely sure?</DialogTitle>
-            <DialogDescription>
-              This action cannot be undone. This will permanently delete your
-              account and remove your data from our servers.
+          <DialogHeader className="flex flex-col gap-6">
+            <DialogTitle className="border-b pb-5">Add Category</DialogTitle>
+            <DialogDescription className="flex flex-col gap-8 ">
+              <div className="flex gap-3">
+                <Select>
+                  <SelectTrigger className="w-[84px] h-[48px]">
+                    <SelectValue placeholder="<sjft/>" />
+                  </SelectTrigger>
+
+                  <SelectContent>
+                    <div className="grid grid-cols-6">
+                      {iconData.map((item, index) => {
+                        const IconComp = iconImgData[item.img];
+                        return (
+                          <SelectItem key={index} value={item.img}>
+                            <IconComp className="w-6 h-6 " />
+                          </SelectItem>
+                        );
+                      })}
+                    </div>
+                  </SelectContent>
+                </Select>
+
+                <Select>
+                  <SelectTrigger className="w-full h-[48px]">
+                    <SelectValue placeholder="Name" />
+                  </SelectTrigger>
+                  <SelectContent className="flex">
+                    <SelectItem value="light" className="flex-1">
+                      Light
+                    </SelectItem>
+                    <SelectItem value="dark" className="flex-1">
+                      Dark
+                    </SelectItem>
+                    <SelectItem value="system" className="flex-1">
+                      System
+                    </SelectItem>
+                  </SelectContent>
+                </Select>
+              </div>
+
+              <Button className="bg-[#16A34A] rounded-3xl text-white">
+                Add
+              </Button>
             </DialogDescription>
           </DialogHeader>
         </DialogContent>
