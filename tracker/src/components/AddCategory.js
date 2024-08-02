@@ -23,6 +23,10 @@ import { AiFillHome } from "react-icons/ai";
 import { MdAccountBox } from "react-icons/md";
 import { PiStairs } from "react-icons/pi";
 import { AiFillPicture } from "react-icons/ai";
+import { Input } from "@/components/ui/input";
+import { useContext } from "react";
+import { AccountContext } from "./context";
+import axios from "axios";
 
 export const AddCategory = () => {
   const iconImgData = {
@@ -79,6 +83,33 @@ export const AddCategory = () => {
       img: "AiFillPicture",
     },
   ];
+
+  const { addCategory, setAddCategory } = useContext(AccountContext);
+  // console.log(addCategory);
+
+  const handleCreatCategory = async () => {
+    console.log("helloo");
+    console.log(addCategory, "=======");
+
+    const response = await axios.post("http://localhost:3010/categories", {
+      categoryName: addCategory,
+    });
+    console.log(response);
+  };
+
+  // const creatCategory = async () => {
+  //   const newCategory = {
+  //     categoryName,
+  //   };
+
+  //   const response = await axios.post(
+  //     "http://localhost:3010/category",
+  //     newCategory
+  //   );
+
+  //   setCategory(response.data);
+  // };
+
   return (
     <main>
       <Dialog>
@@ -116,25 +147,16 @@ export const AddCategory = () => {
                   </SelectContent>
                 </Select>
 
-                <Select>
-                  <SelectTrigger className="w-full h-[48px]">
-                    <SelectValue placeholder="Name" />
-                  </SelectTrigger>
-                  <SelectContent className="flex">
-                    <SelectItem value="light" className="flex-1">
-                      Light
-                    </SelectItem>
-                    <SelectItem value="dark" className="flex-1">
-                      Dark
-                    </SelectItem>
-                    <SelectItem value="system" className="flex-1">
-                      System
-                    </SelectItem>
-                  </SelectContent>
-                </Select>
+                <Input
+                  className="border border-[#D1D5DB] p-4"
+                  onChange={(e) => setAddCategory(e.target.value)}
+                />
               </div>
 
-              <Button className="bg-[#16A34A] rounded-3xl text-white">
+              <Button
+                className="bg-[#16A34A] rounded-3xl text-white"
+                onClick={handleCreatCategory}
+              >
                 Add
               </Button>
             </DialogDescription>

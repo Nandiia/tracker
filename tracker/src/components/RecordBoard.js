@@ -1,5 +1,6 @@
 "use client";
 
+import { useState, useEffect } from "react";
 import { IoIosArrowBack } from "react-icons/io";
 import { IoIosArrowForward } from "react-icons/io";
 import {
@@ -17,6 +18,7 @@ import { CheckboxCom } from "./CheckboxCom";
 
 import { FoodDrink } from "@/app/svg/FoodDrink";
 import { Lending } from "@/app/svg/Lending";
+import axios from "axios";
 
 const data = [
   {
@@ -41,7 +43,22 @@ const data = [
 
 // const data = [<Lending />, "Lending & Renting", "14:00", "- 1000₮"];
 
-export const RecordBoard = () => {
+export const RecordBoard = ({}) => {
+  const [accounts, setAccounts] = useState([]);
+
+  useEffect(() => {
+    const getData = async () => {
+      try {
+        const response = await axios.get("http://localhost:3010/accounts");
+        setAccounts(response.data);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+
+    getData();
+  });
+
   return (
     <main className="mt-12">
       <div className="flex justify-between">
@@ -97,12 +114,12 @@ export const RecordBoard = () => {
         <div className="mt-3">
           <h1>Today</h1>
           <div>
-            {data.map((item, index) => {
+            {accounts.map((item, index) => {
               return (
                 <CheckboxCom
                   key={index}
                   icon={item.icon1}
-                  expenses={item.expenses}
+                  expenses={item.amount}
                   time={item.time}
                   name={item.name1}
                 />

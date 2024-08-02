@@ -1,3 +1,5 @@
+"use client";
+
 import { RecordBoard } from "@/components/RecordBoard";
 import { RecordsMain } from "@/components/RecordsMain";
 

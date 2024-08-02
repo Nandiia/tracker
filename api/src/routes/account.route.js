@@ -7,6 +7,6 @@ const {
 
 const accountRouter = Router();
 
-accountRouter.get("/a", getAllAccounts).post("/a", createAccount);
+accountRouter.get("/", getAllAccounts).post("/", createAccount);
 
 module.exports = { accountRouter };
