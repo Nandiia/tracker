@@ -4,7 +4,7 @@ const { v4 } = require("uuid");
 
 const getAllCategories = async (req, res) => {
   try {
-    const filePath = path.join(__dirname, "..", "data", "category.json");
+    const filePath = path.join(__dirname, "..", "data", "categories.json");
     const rawData = fs.readFileSync(filePath);
     const accounts = JSON.parse(rawData);
     res.json(accounts);

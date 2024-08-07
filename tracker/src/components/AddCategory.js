@@ -24,90 +24,84 @@ import { MdAccountBox } from "react-icons/md";
 import { PiStairs } from "react-icons/pi";
 import { AiFillPicture } from "react-icons/ai";
 import { Input } from "@/components/ui/input";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { AccountContext } from "./context";
 import axios from "axios";
 
+const iconImgData = {
+  AiFillHome: AiFillHome,
+  MdAccountBox: MdAccountBox,
+  PiStairs: PiStairs,
+  AiFillPicture: AiFillPicture,
+  AiFillPicture: AiFillPicture,
+  AiFillPicture: AiFillPicture,
+  AiFillPicture: AiFillPicture,
+  AiFillPicture: AiFillPicture,
+  AiFillPicture: AiFillPicture,
+  AiFillPicture: AiFillPicture,
+};
+
+const iconData = [
+  {
+    img: "AiFillHome",
+  },
+
+  {
+    img: "MdAccountBox",
+  },
+
+  {
+    img: "PiStairs",
+  },
+
+  {
+    img: "AiFillPicture",
+  },
+
+  {
+    img: "AiFillPicture",
+  },
+
+  {
+    img: "AiFillPicture",
+  },
+
+  {
+    img: "AiFillPicture",
+  },
+
+  {
+    img: "AiFillPicture",
+  },
+
+  {
+    img: "AiFillPicture",
+  },
+
+  {
+    img: "AiFillPicture",
+  },
+];
+
 export const AddCategory = () => {
-  const iconImgData = {
-    AiFillHome: AiFillHome,
-    MdAccountBox: MdAccountBox,
-    PiStairs: PiStairs,
-    AiFillPicture: AiFillPicture,
-    AiFillPicture: AiFillPicture,
-    AiFillPicture: AiFillPicture,
-    AiFillPicture: AiFillPicture,
-    AiFillPicture: AiFillPicture,
-    AiFillPicture: AiFillPicture,
-    AiFillPicture: AiFillPicture,
-  };
+  const {
+    category,
+    setCategory,
+    creatCategory,
+    categoryName,
+    setCategoryName,
+  } = useContext(AccountContext);
 
-  const iconData = [
-    {
-      img: "AiFillHome",
-    },
-
-    {
-      img: "MdAccountBox",
-    },
-
-    {
-      img: "PiStairs",
-    },
-
-    {
-      img: "AiFillPicture",
-    },
-
-    {
-      img: "AiFillPicture",
-    },
-
-    {
-      img: "AiFillPicture",
-    },
-
-    {
-      img: "AiFillPicture",
-    },
-
-    {
-      img: "AiFillPicture",
-    },
-
-    {
-      img: "AiFillPicture",
-    },
-
-    {
-      img: "AiFillPicture",
-    },
-  ];
-
-  const { addCategory, setAddCategory } = useContext(AccountContext);
+  // const [newCategoryName, setNewCategoryName] = useState("");
+  // const { addCategory, setAddCategory } = useContext(AccountContext);
   // console.log(addCategory);
 
-  const handleCreatCategory = async () => {
-    console.log("helloo");
-    console.log(addCategory, "=======");
+  // const handleCreatCategory = async () => {
+  //   const response = await axios.post("http://localhost:3010/categories", {
+  //     categoryName: newCategoryName,
+  //   });
 
-    const response = await axios.post("http://localhost:3010/categories", {
-      categoryName: addCategory,
-    });
-    console.log(response);
-  };
-
-  // const creatCategory = async () => {
-  //   const newCategory = {
-  //     categoryName,
-  //   };
-
-  //   const response = await axios.post(
-  //     "http://localhost:3010/category",
-  //     newCategory
-  //   );
-
-  //   setCategory(response.data);
+  //   setAddCategory([...addCategory, response.data]);
   // };
 
   return (
@@ -147,15 +141,22 @@ export const AddCategory = () => {
                   </SelectContent>
                 </Select>
 
+                {/* <Input
+                  className="border border-[#D1D5DB] p-4"
+                  value={categoryName}
+                  onChange={(e) => setNewCategoryName(e.target.value)}
+                /> */}
+
                 <Input
                   className="border border-[#D1D5DB] p-4"
-                  onChange={(e) => setAddCategory(e.target.value)}
+                  value={categoryName}
+                  onChange={(e) => setCategoryName(e.target.value)}
                 />
               </div>
 
               <Button
                 className="bg-[#16A34A] rounded-3xl text-white"
-                onClick={handleCreatCategory}
+                onClick={creatCategory}
               >
                 Add
               </Button>

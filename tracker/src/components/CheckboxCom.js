@@ -8,7 +8,7 @@ import { Checkbox } from "@/components/ui/checkbox";
 
 // ]
 
-export const CheckboxCom = ({ icon, expenses, name, time }) => {
+export const CheckboxCom = ({ icon, money, categoryName, time }) => {
   return (
     <div className=" flex bg-white py-3 px-6 rounded-xl mt-4">
       <div className=" flex flex-1 gap-4 ml-4 items-center">
@@ -19,11 +19,11 @@ export const CheckboxCom = ({ icon, expenses, name, time }) => {
         <div>{icon}</div>
 
         <div>
-          <div>{name}</div>
+          <div>{categoryName}</div>
           <div className="text-xs text-[#6B7280]">{time}</div>
         </div>
         <div className=" flex gap-2 flex-1 justify-end font-semibold text-[#94A3B8]">
-          <div>{expenses}</div>
+          <div>{money}</div>
         </div>
       </div>
     </div>

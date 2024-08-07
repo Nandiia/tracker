@@ -34,8 +34,6 @@ import axios from "axios";
 import { AccountContext } from "./context";
 
 export const AddRecord = () => {
-  const { addCategory } = useContext(AccountContext);
-
   //ene doorh back-d baih data
   const iconData = {
     Gift: Gift,
@@ -55,30 +53,16 @@ export const AddRecord = () => {
     },
   ];
 
-  const [account, setAccounts] = useState([]);
-  const [amount, setAmount] = useState([]);
-  const [category, setCategory] = useState([]);
-
-  // const creatAcounts = async () => {
-  //   const newAccount = {
-  //     amount,
-  //     category,
-  //   };
-
-  //   const response = await axios.post(
-  //     "http://localhost:3010/accounts",
-  //     newAccount
-  //   );
-
-  //   setAccounts(response.data);
-  // };
-
   // const { addCategory } = useContext(AccountContext);
-  console.log(addCategory);
+  const { createRecord } = useContext(AccountContext);
+  const { amount, setAmount } = useContext(AccountContext);
 
-  useEffect(() => {
-    categoryData.push(addCategory);
-  }, [addCategory]);
+  const { addCategory, setAddCategory } = useContext(AccountContext);
+
+  const { category, setCategory, categoryName, setCategoryName } =
+    useContext(AccountContext);
+
+  const [remove, setRemove] = useState(true);
 
   return (
     <main>
@@ -130,24 +114,47 @@ export const AddRecord = () => {
                       <div className="flex flex-col gap-[3px] ">
                         <div>Category</div>
 
-                        <Select>
+                        <Select
+                          onValueChange={(value) => {
+                            setCategoryName(value);
+                          }}
+                        >
                           <SelectTrigger className="h-12 border border-[#D1D5DB] bg-[#F3F4F6] ">
                             <SelectValue placeholder="Choose" />
                           </SelectTrigger>
                           <SelectContent>
                             <AddCategory />
 
-                            {categoryData.map((item, index) => {
-                              const IconComponent = iconData[item.img];
+                            {/* {addCategory.map((item, index) => {
                               return (
-                                <SelectItem key={index} value={item.name}>
-                                  <div className="flex gap-[15px] items-center">
-                                    <IconComponent className="w-6 f-6" />
+                                <SelectItem
+                                  key={index}
+                                  value={item.categoryName}
+                                  onChange={(event) => {
+                                    setAddCategory(event.target.value);
+                                  }}
+                                >
+                                  <div className=" flex w-[350px] justify-between ">
                                     <p>{item.categoryName}</p>
+                                    <div>X</div>
                                   </div>
                                 </SelectItem>
                               );
-                            })}
+                            })} */}
+
+                            {category.map((item, index) => (
+                              <SelectItem key={index} value={item.categoryName}>
+                                <p>{item.categoryName}</p>
+                              </SelectItem>
+                            ))}
+
+                            {/* {category.map((item, index) => {
+                              return (
+                                <SelectItem>
+                                  <div key={index}>{item.categoryName}</div>
+                                </SelectItem>
+                              );
+                            })} */}
                           </SelectContent>
                         </Select>
                       </div>
@@ -180,7 +187,10 @@ export const AddRecord = () => {
                       </>
                     </>
                     <>
-                      <Button className="flex gap-[2px] w-full rounded-[20px] h-8 bg-[#0166FF] text-base font-normal mt-3">
+                      <Button
+                        className="flex gap-[2px] w-full rounded-[20px] h-8 bg-[#0166FF] text-base font-normal mt-3"
+                        onClick={createRecord}
+                      >
                         Add Record
                       </Button>
                     </>

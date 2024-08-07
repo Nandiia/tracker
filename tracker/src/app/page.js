@@ -56,7 +56,7 @@ export default function Home() {
       "http://localhost:3010/accounts",
       newAccount
     );
-    setAccounts([...accounts, response.data]);
+    setAccounts([]);
   };
 
   return (

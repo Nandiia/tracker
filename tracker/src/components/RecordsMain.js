@@ -1,3 +1,5 @@
+"use client";
+
 import { Button } from "./ui/button";
 import { Label } from "@/components/ui/label";
 import { RadioGroup, RadioGroupItem } from "./ui/radio-group";
@@ -9,6 +11,8 @@ import { Slider } from "./ui/slider";
 import { CategoryCom } from "./CategoryCom";
 import { Link } from "lucide-react";
 import { AddRecord } from "./AddRecord";
+import { useContext } from "react";
+import { AccountContext } from "./context";
 
 const recordData = [
   "Food & Drinks",
@@ -25,6 +29,8 @@ const recordData = [
 ];
 
 export const RecordsMain = () => {
+  const { category } = useContext(AccountContext);
+
   return (
     <main className="bg-[#F9FAFB] border border-[#E5E7EB] rounded-xl px-4 py-6">
       <div className="flex flex-col gap-6">
@@ -70,8 +76,8 @@ export const RecordsMain = () => {
             <div className="text-[#E5E7EB]">Clear</div>
           </div>
 
-          {recordData.map((item, index) => {
-            return <CategoryCom key={index} item={item} />;
+          {category.map((item, index) => {
+            return <CategoryCom key={index} item={item.categoryName} />;
           })}
 
           <button className="flex gap-2 bg-[#f8fafc] text-[#1F2937] items-center mt-6">

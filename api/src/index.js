@@ -3,6 +3,7 @@ const cors = require("cors");
 
 const { accountRouter } = require("./routes/account.route");
 const { categoryRouter } = require("./routes/category.route");
+const { recordRouter } = require("./routes/record.router");
 
 const port = 3010;
 const app = express();
@@ -18,8 +19,9 @@ app.get("/", (req, res) => {
 });
 
 app.use("/accounts", accountRouter);
-
 app.use("/categories", categoryRouter);
+
+app.use("/records", recordRouter);
 
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`);
