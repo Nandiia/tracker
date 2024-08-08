@@ -1,4 +1,6 @@
 import { Checkbox } from "@/components/ui/checkbox";
+import { useContext } from "react";
+import { AccountContext } from "./context";
 
 // const dataa = [
 //     <Lending/>,
@@ -9,9 +11,13 @@ import { Checkbox } from "@/components/ui/checkbox";
 // ]
 
 export const CheckboxCom = ({ icon, money, categoryName, time }) => {
+  const { deleteRecord } = useContext(AccountContext);
   return (
     <div className=" flex bg-white py-3 px-6 rounded-xl mt-4">
       <div className=" flex flex-1 gap-4 ml-4 items-center">
+        <button className="cursor-pointer" onClick={deleteRecord}>
+          x
+        </button>
         <div className="flex items-center space-x-2 flex-2 ">
           <Checkbox id="terms" />
         </div>

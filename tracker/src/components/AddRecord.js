@@ -31,6 +31,8 @@ import { Lending } from "@/app/svg/Lending";
 import { Home } from "@/app/svg/Home";
 import { useContext, useEffect, useState } from "react";
 import axios from "axios";
+import * as Icons from "react-icons/fa";
+
 import { AccountContext } from "./context";
 
 export const AddRecord = () => {
@@ -115,9 +117,12 @@ export const AddRecord = () => {
                         <div>Category</div>
 
                         <Select
-                          onValueChange={(value) => {
-                            setCategoryName(value);
-                          }}
+                        // onValueChange={(value) => {
+                        //   setCategoryName((prev) => ({
+                        //     ...prev,
+                        //     value: icon,
+                        //   }));
+                        // }}
                         >
                           <SelectTrigger className="h-12 border border-[#D1D5DB] bg-[#F3F4F6] ">
                             <SelectValue placeholder="Choose" />
@@ -142,11 +147,18 @@ export const AddRecord = () => {
                               );
                             })} */}
 
-                            {category.map((item, index) => (
-                              <SelectItem key={index} value={item.categoryName}>
-                                <p>{item.categoryName}</p>
-                              </SelectItem>
-                            ))}
+                            {category.map((item, index) => {
+                              const Icon = Icons[item.categoryIcon];
+                              return (
+                                <SelectItem
+                                  key={index}
+                                  value={item.categoryName}
+                                >
+                                  <Icon />
+                                  <p>{item.categoryName}</p>
+                                </SelectItem>
+                              );
+                            })}
 
                             {/* {category.map((item, index) => {
                               return (

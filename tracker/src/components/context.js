@@ -22,6 +22,10 @@ export const AccountContextProvider = ({ children }) => {
   const [amount, setAmount] = useState("");
   const [category, setCategory] = useState([]);
   const [categoryName, setCategoryName] = useState("");
+  const [categoryIcon, setCategoryIcon] = useState("");
+
+  console.log("name", categoryName);
+  console.log("icon", categoryIcon);
 
   const getRecord = async () => {
     try {
@@ -49,7 +53,12 @@ export const AccountContextProvider = ({ children }) => {
       "http://localhost:3010/records",
       newRecord
     );
-    setRecord([]);
+    setRecord([...record, response.data]);
+  };
+
+  const deleteRecord = async (id) => {
+    await axios.delete(`http://localhost:3010/records/${id}`);
+    setRecord((prev) => prev.filter((item) => item.id !== id));
   };
 
   useEffect(() => {
@@ -68,6 +77,7 @@ export const AccountContextProvider = ({ children }) => {
   const creatCategory = async () => {
     const newCategory = {
       categoryName,
+      categoryIcon,
     };
 
     console.log(newCategory);
@@ -101,15 +111,19 @@ export const AccountContextProvider = ({ children }) => {
 
         amount,
         setAmount,
+
         record,
         setRecord,
         createRecord,
+        deleteRecord,
 
         category,
         setCategory,
         creatCategory,
         categoryName,
         setCategoryName,
+        categoryIcon,
+        setCategoryIcon,
       }}
     >
       {children}

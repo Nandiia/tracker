@@ -27,61 +27,62 @@ import { Input } from "@/components/ui/input";
 import { useContext, useState } from "react";
 import { AccountContext } from "./context";
 import axios from "axios";
+import { CategoryIcon } from "./CategoryIcon";
 
-const iconImgData = {
-  AiFillHome: AiFillHome,
-  MdAccountBox: MdAccountBox,
-  PiStairs: PiStairs,
-  AiFillPicture: AiFillPicture,
-  AiFillPicture: AiFillPicture,
-  AiFillPicture: AiFillPicture,
-  AiFillPicture: AiFillPicture,
-  AiFillPicture: AiFillPicture,
-  AiFillPicture: AiFillPicture,
-  AiFillPicture: AiFillPicture,
-};
+// const iconImgData = {
+//   AiFillHome: AiFillHome,
+//   MdAccountBox: MdAccountBox,
+//   PiStairs: PiStairs,
+//   AiFillPicture: AiFillPicture,
+//   AiFillPicture: AiFillPicture,
+//   AiFillPicture: AiFillPicture,
+//   AiFillPicture: AiFillPicture,
+//   AiFillPicture: AiFillPicture,
+//   AiFillPicture: AiFillPicture,
+//   AiFillPicture: AiFillPicture,
+// };
 
-const iconData = [
-  {
-    img: "AiFillHome",
-  },
+// const iconData = [
+//   {
+//     img: "AiFillHome",
+//   },
 
-  {
-    img: "MdAccountBox",
-  },
+//   {
+//     img: "MdAccountBox",
+//   },
 
-  {
-    img: "PiStairs",
-  },
+//   {
+//     img: "PiStairs",
+//   },
 
-  {
-    img: "AiFillPicture",
-  },
+//   {
+//     img: "AiFillPicture",
+//   },
 
-  {
-    img: "AiFillPicture",
-  },
+//   {
+//     img: "AiFillPicture",
+//   },
 
-  {
-    img: "AiFillPicture",
-  },
+//   {
+//     img: "AiFillPicture",
+//   },
 
-  {
-    img: "AiFillPicture",
-  },
+//   {
+//     img: "AiFillPicture",
+//   },
 
-  {
-    img: "AiFillPicture",
-  },
+//   {
+//     img: "AiFillPicture",
+//   },
 
-  {
-    img: "AiFillPicture",
-  },
+//   {
+//     img: "AiFillPicture",
+//   },
 
-  {
-    img: "AiFillPicture",
-  },
-];
+//   {
+//     img: "AiFillPicture",
+//   },
+// ];
 
 export const AddCategory = () => {
   const {
@@ -90,6 +91,8 @@ export const AddCategory = () => {
     creatCategory,
     categoryName,
     setCategoryName,
+    categoryIcon,
+    setCategoryIcon,
   } = useContext(AccountContext);
 
   // const [newCategoryName, setNewCategoryName] = useState("");
@@ -122,24 +125,7 @@ export const AddCategory = () => {
             <DialogTitle className="border-b pb-5">Add Category</DialogTitle>
             <DialogDescription className="flex flex-col gap-8 ">
               <div className="flex gap-3">
-                <Select>
-                  <SelectTrigger className="w-[84px] h-[48px]">
-                    <SelectValue placeholder="<sjft/>" />
-                  </SelectTrigger>
-
-                  <SelectContent>
-                    <div className="grid grid-cols-6">
-                      {iconData.map((item, index) => {
-                        const IconComp = iconImgData[item.img];
-                        return (
-                          <SelectItem key={index} value={item.img}>
-                            <IconComp className="w-6 h-6 " />
-                          </SelectItem>
-                        );
-                      })}
-                    </div>
-                  </SelectContent>
-                </Select>
+                <CategoryIcon catIc={categoryIcon} catSetIc={setCategoryIcon} />
 
                 {/* <Input
                   className="border border-[#D1D5DB] p-4"
