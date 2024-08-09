@@ -23,6 +23,7 @@ export const AccountContextProvider = ({ children }) => {
   const [category, setCategory] = useState([]);
   const [categoryName, setCategoryName] = useState("");
   const [categoryIcon, setCategoryIcon] = useState("");
+  const [categoryColor, setCategoryColor] = useState("");
 
   console.log("name", categoryName);
   console.log("icon", categoryIcon);
@@ -46,6 +47,7 @@ export const AccountContextProvider = ({ children }) => {
   const createRecord = async () => {
     const newRecord = {
       categoryName,
+      categoryIcon,
       amount,
     };
 
@@ -78,6 +80,7 @@ export const AccountContextProvider = ({ children }) => {
     const newCategory = {
       categoryName,
       categoryIcon,
+      categoryColor,
     };
 
     console.log(newCategory);
@@ -124,6 +127,8 @@ export const AccountContextProvider = ({ children }) => {
         setCategoryName,
         categoryIcon,
         setCategoryIcon,
+        categoryColor,
+        setCategoryColor,
       }}
     >
       {children}

@@ -61,7 +61,7 @@ export const AddRecord = () => {
 
   const { addCategory, setAddCategory } = useContext(AccountContext);
 
-  const { category, setCategory, categoryName, setCategoryName } =
+  const { category, setCategory, categoryColor, setCategoryColor } =
     useContext(AccountContext);
 
   const [remove, setRemove] = useState(true);
@@ -154,7 +154,11 @@ export const AddRecord = () => {
                                   key={index}
                                   value={item.categoryName}
                                 >
-                                  <Icon />
+                                  <Icon
+                                    style={{
+                                      color: item.categoryColor,
+                                    }}
+                                  />
                                   <p>{item.categoryName}</p>
                                 </SelectItem>
                               );

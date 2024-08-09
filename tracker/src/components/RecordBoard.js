@@ -21,6 +21,8 @@ import { Lending } from "@/app/svg/Lending";
 import axios from "axios";
 import { AccountContext } from "./context";
 
+import * as Icons from "react-icons/fa";
+
 const data = [
   {
     icon1: <Lending />,
@@ -46,7 +48,7 @@ const data = [
 
 export const RecordBoard = ({}) => {
   const { accounts } = useContext(AccountContext);
-  const { record } = useContext(AccountContext);
+  const { record, categoryIcon } = useContext(AccountContext);
   return (
     <main className="mt-12">
       <div className="flex justify-between">
@@ -109,6 +111,8 @@ export const RecordBoard = ({}) => {
                   money={item.amount}
                   categoryName={item.categoryName}
                   time={item.time}
+                  id={item.id}
+                  categoryIcon={item.categoryIcon}
                 />
               );
             })}

@@ -1,39 +1,5 @@
 "use client";
 
-import { Checkbox } from "@/components/ui/checkbox";
-import { FaCamera } from "react-icons/fa";
-import { FaCoffee } from "react-icons/fa";
-import { FaBeer } from "react-icons/fa";
-import { FaApple } from "react-icons/fa";
-import { FaAndroid } from "react-icons/fa";
-import { FaRocket } from "react-icons/fa";
-import { FaHeart } from "react-icons/fa";
-import { FaCar } from "react-icons/fa";
-import { FaBicycle } from "react-icons/fa";
-import { FaBus } from "react-icons/fa";
-import { GiHamburger } from "react-icons/gi";
-import { GiPizzaSlice } from "react-icons/gi";
-import { GiHotDog } from "react-icons/gi";
-import { GiDonut } from "react-icons/gi";
-import { GiIceCreamCone } from "react-icons/gi";
-import { GiCakeSlice } from "react-icons/gi";
-import { SiNintendo } from "react-icons/si";
-import { SiPlaystation } from "react-icons/si";
-import { SiXbox } from "react-icons/si";
-import { SiSteam } from "react-icons/si";
-import { FaHouseChimney } from "react-icons/fa6";
-import { FaBoxOpen } from "react-icons/fa";
-import { FaParachuteBox } from "react-icons/fa6";
-import { GiBoombox } from "react-icons/gi";
-import { GiBoxingGloveSurprise } from "react-icons/gi";
-import { SiScrapbox } from "react-icons/si";
-import { TbBoxMultiple7 } from "react-icons/tb";
-import { FaBridge } from "react-icons/fa6";
-import { SiHomebridge } from "react-icons/si";
-import { FaIcons } from "react-icons/fa";
-import React, { useContext, useState } from "react";
-import { AccountContext } from "./context";
-
 import * as Icons from "react-icons/fa";
 
 import {
@@ -44,10 +10,14 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { setConfig } from "next/config";
+import { useContext, useState } from "react";
+import { AccountContext } from "./context";
 
 const iconData = [{ icon: "FaAccessibleIcon" }, { icon: "FaAdjust" }];
 
 const colorData = [{ color: "red" }, { color: "blue" }];
+const colorD = ["red", "yellow", "green", "orange"];
+console.log(colorD);
 
 // const categoryData = [
 //   {
@@ -109,6 +79,8 @@ const colorData = [{ color: "red" }, { color: "blue" }];
 // ];
 
 export const CategoryIcon = ({ catIc, catSetIc }) => {
+  const { categoryColor, setCategoryColor } = useContext(AccountContext);
+
   return (
     // <Select
     //   //   value={catIc}
@@ -145,13 +117,48 @@ export const CategoryIcon = ({ catIc, catSetIc }) => {
           const IconComp = Icons[item.icon];
           return (
             <SelectItem key={index} value={item.icon}>
-              <IconComp />
+              <IconComp style={{ color: categoryColor }} />
             </SelectItem>
           );
         })}
-        {colorData.map((item) => {
-          return <div className={`bg-red-600 w-4 border h-5`}></div>;
+        {/* {colorData.map((item) => {
+          return (
+            <div
+              className="w-6 h-6 rounded-xl"
+              style={{ backgroundColor: `${item.color}` }}
+
+            ></div>
+          );
+        })} */}
+
+        {colorD.map((item, index) => {
+          return (
+            <div
+              key={index}
+              className="w-6 h-6 rounded-xl border"
+              style={{ backgroundColor: item }}
+              onClick={() => setCategoryColor(item)}
+            ></div>
+          );
         })}
+
+        {/* {colorD.map((item, index) => {
+          const colorHandle = (event) => {
+            setCategoryColor(event.target.value);
+          };
+          return (
+            <Select
+              key={index}
+              style={{ background: item }}
+              className="w-6 h-6 rounded-xl "
+              
+            >
+              <SelectContent>
+                <SelectItem value={item} oncClick={}></SelectItem>
+              </SelectContent>
+            </Select>
+          );
+        })} */}
       </SelectContent>
     </Select>
   );

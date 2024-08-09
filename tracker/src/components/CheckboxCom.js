@@ -10,19 +10,27 @@ import { AccountContext } from "./context";
 
 // ]
 
-export const CheckboxCom = ({ icon, money, categoryName, time }) => {
+export const CheckboxCom = ({
+  categoryIcon,
+  money,
+  categoryName,
+  time,
+  id,
+}) => {
   const { deleteRecord } = useContext(AccountContext);
+  console.log(CheckboxCom + "iiiiiiiii");
+
   return (
     <div className=" flex bg-white py-3 px-6 rounded-xl mt-4">
       <div className=" flex flex-1 gap-4 ml-4 items-center">
-        <button className="cursor-pointer" onClick={deleteRecord}>
+        <button className="cursor-pointer" onClick={() => deleteRecord(id)}>
           x
         </button>
         <div className="flex items-center space-x-2 flex-2 ">
           <Checkbox id="terms" />
         </div>
 
-        <div>{icon}</div>
+        <div>{categoryIcon}</div>
 
         <div>
           <div>{categoryName}</div>
