@@ -44,11 +44,9 @@ const data = [
   },
 ];
 
-// const data = [<Lending />, "Lending & Renting", "14:00", "- 1000₮"];
-
 export const RecordBoard = ({}) => {
-  const { accounts } = useContext(AccountContext);
-  const { record, categoryIcon } = useContext(AccountContext);
+  const { record } = useContext(AccountContext);
+
   return (
     <main className="mt-12">
       <div className="flex justify-between">
@@ -102,19 +100,13 @@ export const RecordBoard = ({}) => {
 
       <>
         <div className="mt-3">
-          <h1>Today</h1>
+          {record.map((item) => {
+            <h1 key={item.id}>{item.date}</h1>;
+          })}
+
           <div>
-            {record.map((item, index) => {
-              return (
-                <CheckboxCom
-                  key={index}
-                  money={item.amount}
-                  categoryName={item.categoryName}
-                  time={item.time}
-                  id={item.id}
-                  categoryIcon={item.categoryIcon}
-                />
-              );
+            {record?.map((item, index) => {
+              return <CheckboxCom key={index} item={item} />;
             })}
           </div>
         </div>

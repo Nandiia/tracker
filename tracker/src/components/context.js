@@ -24,6 +24,15 @@ export const AccountContextProvider = ({ children }) => {
   const [categoryName, setCategoryName] = useState("");
   const [categoryIcon, setCategoryIcon] = useState("");
   const [categoryColor, setCategoryColor] = useState("");
+  const [newRecord, setNewRecord] = useState({
+    type: "EXP",
+    amount: 0,
+    category_id: "",
+    date: "",
+    time: "",
+    payee: "",
+    note: "",
+  });
 
   console.log("name", categoryName);
   console.log("icon", categoryIcon);
@@ -45,16 +54,18 @@ export const AccountContextProvider = ({ children }) => {
   }, []);
 
   const createRecord = async () => {
-    const newRecord = {
-      categoryName,
-      categoryIcon,
-      amount,
-    };
+    // const categoryName = category.find(
+    //   (item) => item.id === newRecord.category_id
+    // ).categoryName;
+    // const categoryIcon = category.find(
+    //   (item) => item.id === newRecord.category_id
+    // ).categoryIcon;
 
-    const response = await axios.post(
-      "http://localhost:3010/records",
-      newRecord
-    );
+    const response = await axios.post("http://localhost:3010/records", {
+      ...newRecord,
+      // categoryName,
+      // categoryIcon,
+    });
     setRecord([...record, response.data]);
   };
 
@@ -128,6 +139,8 @@ export const AccountContextProvider = ({ children }) => {
         categoryIcon,
         setCategoryIcon,
         categoryColor,
+        newRecord,
+        setNewRecord,
         setCategoryColor,
       }}
     >

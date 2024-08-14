@@ -36,35 +36,28 @@ import * as Icons from "react-icons/fa";
 import { AccountContext } from "./context";
 
 export const AddRecord = () => {
-  //ene doorh back-d baih data
-  const iconData = {
-    Gift: Gift,
-    Home: Home,
-  };
+  // //ene doorh back-d baih data
+  // const iconData = {
+  //   Gift: Gift,
+  //   Home: Home,
+  // };
 
-  //ene bol end baih data
-  const categoryData = [
-    {
-      img: "Home",
-      name: "Home",
-    },
+  // //ene bol end baih data
+  // const categoryData = [
+  //   {
+  //     img: "Home",
+  //     name: "Home",
+  //   },
 
-    {
-      img: "Gift",
-      name: "Gift",
-    },
-  ];
+  //   {
+  //     img: "Gift",
+  //     name: "Gift",
+  //   },
+  // ];
 
   // const { addCategory } = useContext(AccountContext);
-  const { createRecord } = useContext(AccountContext);
-  const { amount, setAmount } = useContext(AccountContext);
-
-  const { addCategory, setAddCategory } = useContext(AccountContext);
-
-  const { category, setCategory, categoryColor, setCategoryColor } =
+  const { createRecord, newRecord, setNewRecord, category } =
     useContext(AccountContext);
-
-  const [remove, setRemove] = useState(true);
 
   return (
     <main>
@@ -105,9 +98,12 @@ export const AddRecord = () => {
                           id="num"
                           placeholder="₮ 000.00"
                           className="bg-[#F3F4F6] p-0"
-                          value={amount}
+                          value={newRecord.amount}
                           onChange={(event) => {
-                            setAmount(event.target.value);
+                            setNewRecord({
+                              ...newRecord,
+                              amount: event.target.value,
+                            });
                           }}
                         />
                       </div>
@@ -117,12 +113,12 @@ export const AddRecord = () => {
                         <div>Category</div>
 
                         <Select
-                        // onValueChange={(value) => {
-                        //   setCategoryName((prev) => ({
-                        //     ...prev,
-                        //     value: icon,
-                        //   }));
-                        // }}
+                          onValueChange={(value) => {
+                            setNewRecord((prev) => ({
+                              ...prev,
+                              category_id: value,
+                            }));
+                          }}
                         >
                           <SelectTrigger className="h-12 border border-[#D1D5DB] bg-[#F3F4F6] ">
                             <SelectValue placeholder="Choose" />
@@ -150,10 +146,7 @@ export const AddRecord = () => {
                             {category.map((item, index) => {
                               const Icon = Icons[item.categoryIcon];
                               return (
-                                <SelectItem
-                                  key={index}
-                                  value={item.categoryName}
-                                >
+                                <SelectItem key={index} value={item.id}>
                                   <Icon
                                     style={{
                                       color: item.categoryColor,
@@ -186,6 +179,13 @@ export const AddRecord = () => {
                                 id="num"
                                 placeholder="₮ 000.00"
                                 className="bg-[#F3F4F6] border border-[#D1D5DB] px-4"
+                                value={newRecord.date}
+                                onChange={(event) => {
+                                  setNewRecord({
+                                    ...newRecord,
+                                    date: event.target.value,
+                                  });
+                                }}
                               />
                             </div>
 
@@ -196,6 +196,13 @@ export const AddRecord = () => {
                                 id="num"
                                 placeholder="₮ 000.00"
                                 className="bg-[#F3F4F6] border border-[#D1D5DB] px-4 text-[#0F172A]"
+                                value={newRecord.time}
+                                onChange={(event) => {
+                                  setNewRecord({
+                                    ...newRecord,
+                                    time: event.target.value,
+                                  });
+                                }}
                               />
                             </div>
                           </div>
