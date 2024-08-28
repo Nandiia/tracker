@@ -5,13 +5,15 @@ const {
   createRecord,
   deleteRecord,
   getRecord,
+  createPost,
+  getPost,
 } = require("../controllers/record.controller");
 
 const recordRouter = Router();
 recordRouter
-  .get("/", getRecords)
+  .get("/getRecord", getRecord)
+  .post("/createRecord", createRecord)
   .get("/:id", getRecord)
-  .post("/", createRecord)
   .delete("/:id", deleteRecord);
 
 module.exports = { recordRouter };

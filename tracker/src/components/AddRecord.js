@@ -32,10 +32,11 @@ import { Home } from "@/app/svg/Home";
 import { useContext, useEffect, useState } from "react";
 import axios from "axios";
 import * as Icons from "react-icons/fa";
-
+// import * as Icons from "lucide-react";
 import { AccountContext } from "./context";
 
 export const AddRecord = () => {
+  // const { createRecord } = useContext(AccountContext);
   // //ene doorh back-d baih data
   // const iconData = {
   //   Gift: Gift,
@@ -58,6 +59,8 @@ export const AddRecord = () => {
   // const { addCategory } = useContext(AccountContext);
   const { createRecord, newRecord, setNewRecord, category } =
     useContext(AccountContext);
+
+  console.log(category + ".....");
 
   return (
     <main>
@@ -124,27 +127,19 @@ export const AddRecord = () => {
                             <SelectValue placeholder="Choose" />
                           </SelectTrigger>
                           <SelectContent>
+                            {/* <AddCategory /> */}
                             <AddCategory />
 
-                            {/* {addCategory.map((item, index) => {
-                              return (
-                                <SelectItem
-                                  key={index}
-                                  value={item.categoryName}
-                                  onChange={(event) => {
-                                    setAddCategory(event.target.value);
-                                  }}
-                                >
-                                  <div className=" flex w-[350px] justify-between ">
-                                    <p>{item.categoryName}</p>
-                                    <div>X</div>
-                                  </div>
-                                </SelectItem>
-                              );
-                            })} */}
-
                             {category.map((item, index) => {
-                              const Icon = Icons[item.categoryIcon];
+                              console.log(item.categoryIcon + "jjjj");
+
+                              const Icon =
+                                item.categoryIcon === Icons[item.categoryIcon]
+                                  ? item.categoryIcon
+                                  : null;
+
+                              console.log(Icon);
+
                               return (
                                 <SelectItem key={index} value={item.id}>
                                   <Icon
@@ -156,14 +151,6 @@ export const AddRecord = () => {
                                 </SelectItem>
                               );
                             })}
-
-                            {/* {category.map((item, index) => {
-                              return (
-                                <SelectItem>
-                                  <div key={index}>{item.categoryName}</div>
-                                </SelectItem>
-                              );
-                            })} */}
                           </SelectContent>
                         </Select>
                       </div>
@@ -252,6 +239,7 @@ export const AddRecord = () => {
                 </div>
               </div>
             </div>
+            {/* <div>helloooo</div> */}
           </DialogHeader>
         </DialogContent>
       </Dialog>

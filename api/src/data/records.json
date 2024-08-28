@@ -1,1 +1,12 @@
-[{"type":"EXP","amount":"10000","category_id":"d45ff515-dcfc-4bff-9dbf-fdc071d153fc","date":"2024-08-12","time":"13:06","payee":"","note":"","id":"f9915604-d9ec-4fa4-9186-c2f8b3693254"},{"type":"EXP","amount":"10000","category_id":"d45ff515-dcfc-4bff-9dbf-fdc071d153fc","date":"2024-08-10","time":"13:06","payee":"","note":"","id":"89049c8b-c37a-42b2-a847-a12f2b08da90"},{"type":"EXP","amount":0,"category_id":"1fb59803-cb66-43d9-a105-840ce0130daf","date":"","time":"","payee":"","note":"","id":"db81fa93-c886-4606-8dff-92db4defce5b"}]
+[
+  {
+    "type": "EXP",
+    "amount": "10000",
+    "category_id": "d45ff515-dcfc-4bff-9dbf-fdc071d153fc",
+    "date": "2024-08-12",
+    "time": "13:06",
+    "payee": "",
+    "note": "",
+    "id": "f9915604-d9ec-4fa4-9186-c2f8b3693254"
+  }
+]

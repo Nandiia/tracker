@@ -8,12 +8,15 @@ import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import axios from "axios";
+import { useAuth } from "@/components/AuthProvider";
 
 export default function Home() {
   const [accounts, setAccounts] = useState([]);
 
   const [title, setTitle] = useState("");
   const [amount, setAmount] = useState("");
+
+  const { user } = useAuth();
 
   useEffect(() => {
     // const getData = async () => {
@@ -93,6 +96,8 @@ export default function Home() {
             setAmount(event.target.value);
           }}
         />
+
+        <div>ner {user?.username}</div>
 
         <button onClick={createAccount}>Click me</button>
       </div>

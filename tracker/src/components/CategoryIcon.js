@@ -1,6 +1,7 @@
 "use client";
 
 import * as Icons from "react-icons/fa";
+// import * as Icons from "lucide-react";
 
 import {
   Select,
@@ -108,7 +109,7 @@ export const CategoryIcon = ({ catIc, catSetIc }) => {
     //   </SelectContent>
     // </Select>
 
-    <Select value={catIc} onValueChange={catSetIc}>
+    <Select value={catIc} onValueChange={(value) => catSetIc(value)}>
       <SelectTrigger className="w-[180px]">
         <SelectValue placeholder="Theme" />
       </SelectTrigger>

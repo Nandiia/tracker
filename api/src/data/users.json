@@ -1,1 +1,22 @@
-[]
+[
+  { "email": "nandia1119@gmail.com", "password": "123456" },
+  { "id": "727b26c6-c41b-4d30-a9bb-28afcee3940f" },
+  {
+    "id": "825eea02-46db-4371-96ac-fbcc9eef45d7",
+    "username": "nandia",
+    "email": "nandia11@gmail.com",
+    "password": "111111"
+  },
+  {
+    "id": "cdc56681-a8da-4b29-86ba-695698c9e89b",
+    "username": "",
+    "email": "",
+    "password": ""
+  },
+  {
+    "id": "2499a4d1-1532-4269-9f56-f26b1bfdae90",
+    "username": "dalai",
+    "email": "dalai11@gmail.com",
+    "password": "123456"
+  }
+]

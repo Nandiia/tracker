@@ -1,6 +1,7 @@
 const fs = require("fs");
 const path = require("path");
 const { v4 } = require("uuid");
+const { db } = require("../database");
 
 const getAllAccounts = async (req, res) => {
   try {

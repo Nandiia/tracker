@@ -32,6 +32,7 @@ export const AccountContextProvider = ({ children }) => {
     time: "",
     payee: "",
     note: "",
+    userId: "",
   });
 
   console.log("name", categoryName);
@@ -39,10 +40,14 @@ export const AccountContextProvider = ({ children }) => {
 
   const getRecord = async () => {
     try {
-      const response = await axios.get("http://localhost:3010/records");
-      // console.log(response);
+      const response = await axios.get("http://localhost:3010/records", {
+        headers: {
+          Authorization: `Bearer  ${localStorage.getItem("token")}`,
+        },
+      });
+      // console.log(response, "ggggg");
 
-      setRecord(response.data);
+      // setRecord(response.data);
 
       // console.log(response.data);
     } catch (error) {
@@ -59,13 +64,19 @@ export const AccountContextProvider = ({ children }) => {
     // ).categoryName;
     // const categoryIcon = category.find(
     //   (item) => item.id === newRecord.category_id
-    // ).categoryIcon;
+    // ).categoryIcon; /* nemsen categoryNAme, categoryIcon 2-oo doorh newRecord-oo nemj ugnu */
 
-    const response = await axios.post("http://localhost:3010/records", {
-      ...newRecord,
-      // categoryName,
-      // categoryIcon,
-    });
+    // setNewRecord({...newRecord, userId: })
+
+    const response = await axios.post(
+      "http://localhost:3010/records",
+      newRecord,
+      {
+        headers: {
+          Authorization: `Bearer  ${localStorage.getItem("token")}`,
+        },
+      }
+    );
     setRecord([...record, response.data]);
   };
 
@@ -76,8 +87,18 @@ export const AccountContextProvider = ({ children }) => {
 
   useEffect(() => {
     const getCategory = async () => {
+      const token = localStorage.getItem("token");
       try {
-        const response = await axios.get("http://localhost:3010/categories");
+        const response = await axios.get("http://localhost:3010/categories", {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer  ${token}`,
+          },
+        });
+
+        console.log(localStorage.getItem("token"));
+
+        console.log(response + "responce data");
 
         setCategory(response.data);
       } catch (error) {
@@ -87,6 +108,7 @@ export const AccountContextProvider = ({ children }) => {
     getCategory();
   }, []);
 
+  /*local data-s datagaa awch baigaa 
   const creatCategory = async () => {
     const newCategory = {
       categoryName,
@@ -98,6 +120,31 @@ export const AccountContextProvider = ({ children }) => {
     const response = await axios.post(
       "http://localhost:3010/categories",
       newCategory
+    );
+    setCategory([...category, response.data]);
+  }; */
+
+  /* database-s datagaa oruulj irj bn. token tawij bn */
+
+  const creatCategory = async () => {
+    const newCategory = {
+      categoryName,
+      categoryIcon,
+      categoryColor,
+    };
+
+    console.log(categoryName, categoryIcon, categoryColor);
+
+    console.log(newCategory);
+    const response = await axios.post(
+      "http://localhost:3010/categories",
+      newCategory,
+      {
+        headers: {
+          // Authorization: "Bearer" + localStorage.getItem("token"),
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
+      }
     );
     setCategory([...category, response.data]);
   };

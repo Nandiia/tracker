@@ -146,6 +146,7 @@ export const AddCategory = () => {
               >
                 Add
               </Button>
+              {/* <Button>test</Button> */}
             </DialogDescription>
           </DialogHeader>
         </DialogContent>
